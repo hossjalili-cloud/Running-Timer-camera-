@@ -15,9 +15,14 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+      - name: Check files
+        run: |
+          ls -la
+          ls -la www
+          test -f www/index.html
       - name: Prepare Android project
         run: |
-          npm init -y
+          echo '{"name":"myapp","version":"1.0.0","private":true}' > package.json
           npm install @capacitor/core @capacitor/cli @capacitor/android
           npx cap init MyApp com.example.myapp --web-dir=www
           npx cap add android
